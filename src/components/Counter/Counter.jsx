@@ -12,31 +12,28 @@ const [good, setGood] = useState(0);
 const [neutral, setNeutral] = useState(0);
 const [bad, setBad] = useState(0);
     
-    const onFeedback = e => {
+const onFeedback = e => {
 
-        let name = e.target.name[0].toUpperCase() + e.target.name.slice(1)
-    
-        switch (name) {
-            case "Good":
-                setGood(good + 1)
-                break;
-            case "Neutral":
-                setNeutral(neutral + 1)
-                break;
-            case "Bad":
-                setBad(bad + 1)
-                break;
-            default:
-                return;
-        }
+    switch (e.target.name) {
+        case "Good":
+            setGood(prevState => prevState + 1)
+            break;
+        case "Neutral":
+            setNeutral(prevState => prevState + 1)
+            break;
+        case "Bad":
+            setBad(prevState => prevState + 1)
+            break;
+        default:
+            return;
     }
-
+    }
+    
+const total = good + neutral + bad;
+    
 const countPositiveFeedbackPercentage = () => {
     return Math.round((good / total) * 100);
 }
-
-const total = good + neutral + bad;
-const positivePercentage = countPositiveFeedbackPercentage();
 
     return (
         <>
@@ -55,7 +52,7 @@ const positivePercentage = countPositiveFeedbackPercentage();
                     neutral={neutral}
                     bad={bad}
                     total={total}
-                    positivePercentage={positivePercentage}
+                    positivePercentage={countPositiveFeedbackPercentage()}
                 />) : 
                     ( <Notification 
                         message = "There is no feedback"
