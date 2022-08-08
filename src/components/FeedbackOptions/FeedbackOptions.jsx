@@ -14,7 +14,7 @@ const FeedbackOptions = ( {onLeaveFeedback, options}) => {
                         onClick={onLeaveFeedback}
                         name={name}
                         className = {css.feedback}
-                    >{name[0].toUpperCase() + name.slice(1)}</button>
+                    >{name}</button>
                 ))}
             </ul>
         </div>    
@@ -29,6 +29,8 @@ FeedbackOptions.propTypes = {
 
 export default FeedbackOptions;
 
+
+// 
 
 
 
